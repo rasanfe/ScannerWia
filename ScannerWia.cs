@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using WIA;
 using System.IO;
+using Tesseract;
+using System.Reflection;
 
 namespace ScannerWia
 {
@@ -36,7 +38,7 @@ namespace ScannerWia
 
             for (int i = 1; i <= deviceManager.DeviceInfos.Count; i++)
             {
-                if (deviceManager.DeviceInfos[i].Type == WIA.WiaDeviceType.ScannerDeviceType)
+                if (deviceManager.DeviceInfos[i].Type == WiaDeviceType.ScannerDeviceType)
                 {
                     string scannerName = deviceManager.DeviceInfos[i].Properties["Name"].get_Value().ToString();
                     uniqueScannerNames.Add(scannerName);
@@ -89,13 +91,17 @@ namespace ScannerWia
                     image = device.ScanImage(WIA_FORMAT_TIFF);
                     imageExtension = ".tiff";
                     break;
+                case "OCR":
+                    image = device.ScanImage(WIA_FORMAT_PNG);
+                    imageExtension = ".png";
+                    break;
                 default:
                     throw new ArgumentException("Formato no válido. Formatos admitidos: PNG, JPEG, BMP, GIF, TIFF", "formato");
 
             }
 
             // Save the image
-            var path = System.IO.Path.Combine(outputPath, fileName + imageExtension);
+            var path = Path.Combine(outputPath, fileName + imageExtension);
 
             if (File.Exists(path))
             {
@@ -104,10 +110,48 @@ namespace ScannerWia
 
             image.SaveFile(path);
 
-            // If needed, return the path to the saved image
+            //Caso especial para hacer OCR
+            if (format.ToUpper() == "OCR")
+            {
+                //Obtenemos el Nombre del TXT a partir del Nombre del PNG
+                string txtPath = Path.GetDirectoryName(path) + "\\" + Path.GetFileNameWithoutExtension(path) + ".txt";
+
+                if (File.Exists(txtPath))
+                {
+                    File.Delete(txtPath);
+                }
+
+                //Convertimos el PNG a TXT
+                string rutaEnsamblado = Assembly.GetExecutingAssembly().Location;
+                string directorio = Path.GetDirectoryName(rutaEnsamblado);
+                string dataPath = Path.Combine(directorio, "tessdata");
+                string language = "spa";
+
+                ConvertImageToTxt(path, txtPath, dataPath, language);
+
+                //Eliminamos Imagen Escaneada (PNG)
+                File.Delete(path);
+
+                //Cambio la Ruta de la Imagen por la del TXT
+                path = txtPath;
+
+            }
+
             return path;
         }
 
-        
+        public void ConvertImageToTxt(string imagePath, string txtPath, string dataPath, string language)
+        {
+            var engine = new TesseractEngine(@dataPath, language);
+            var image = Pix.LoadFromFile(@imagePath);
+            var page = engine.Process(image);
+
+            var text = page.GetText();
+
+            File.WriteAllText(@txtPath, text);
+        }
+
+
+
     }
 }

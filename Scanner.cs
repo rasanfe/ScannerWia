@@ -27,7 +27,7 @@ namespace ScannerWia
         private int height_pixel = 3507;//1700;
         private int color_mode = 1;
 
-        public Scanner(DeviceInfo deviceInfo)
+        internal Scanner(DeviceInfo deviceInfo)
         {
             this._deviceInfo = deviceInfo;
         }
@@ -37,7 +37,7 @@ namespace ScannerWia
         /// </summary>
         /// <param name="imageFormat">Expects a WIA.FormatID constant</param>
         /// <returns></returns>
-        public ImageFile ScanImage(string imageFormat)
+        internal ImageFile ScanImage(string imageFormat)
         {
             // Connect to the device and instruct it to scan
             // Connect to the device

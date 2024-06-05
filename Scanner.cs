@@ -37,7 +37,7 @@ namespace ScannerWia
         /// </summary>
         /// <param name="imageFormat">Expects a WIA.FormatID constant</param>
         /// <returns></returns>
-        internal ImageFile ScanImage(string imageFormat)
+        internal List<ImageFile> ScanImages(string imageFormat)
         {
             // Connect to the device and instruct it to scan
             // Connect to the device
@@ -48,43 +48,56 @@ namespace ScannerWia
 
             var item = device.Items[1];
 
-            try
+            List<ImageFile> scannedImages = new List<ImageFile>();
+
+            while (true)
             {
-                AdjustScannerSettings(item, resolution, 0, 0, width_pixel, height_pixel, 0, 0, color_mode);
+                 try
+                  {
+                    AdjustScannerSettings(item, resolution, 0, 0, width_pixel, height_pixel, 0, 0, color_mode);
 
-                object scanResult = dlg.ShowTransfer(item, imageFormat, true);
+                    object scanResult = dlg.ShowTransfer(item, imageFormat, true);
 
-                if (scanResult != null)
+                    if (scanResult != null)
+                    {
+                        var imageFile = (ImageFile)scanResult;
+                        scannedImages.Add(imageFile);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                catch (COMException e)
                 {
-                    var imageFile = (ImageFile)scanResult;
+                    // Display the exception in the console.
+                    Console.WriteLine(e.ToString());
 
-                    // Return the imageFile
-                    return imageFile;
+                    uint errorCode = (uint)e.ErrorCode;
+
+                    // Catch 2 of the most common exceptions
+                    if (errorCode == 0x80210006)
+                    {
+                        throw new Exception("El escáner está ocupado o no está listo.");
+                    }
+                    else if (errorCode == 0x80210064)
+                    {
+                        throw new Exception("El proceso de escaneo ha sido cancelado.");
+                    }
+                    else if (errorCode == 0x80210003) // WIA_ERROR_PAPER_EMPTY
+                    {
+                        // No more pages
+                        break;
+                    }
+                    else
+                    {
+                        throw new Exception("Se produjo un error no capturado, verifica la consola.");
+                    }
                 }
             }
-            catch (COMException e)
-            {
-                // Display the exception in the console.
-                Console.WriteLine(e.ToString());
 
-                uint errorCode = (uint)e.ErrorCode;
+            return scannedImages;
 
-                // Catch 2 of the most common exceptions
-                if (errorCode == 0x80210006)
-                {
-                    throw new Exception("El escáner está ocupado o no está listo.");
-                }
-                else if (errorCode == 0x80210064)
-                {
-                    throw new Exception("El proceso de escaneo ha sido cancelado.");
-                }
-                else
-                {
-                    throw new Exception("Se produjo un error no capturado, verifica la consola.");
-                }
-            }
-
-            return new ImageFile();
         }
 
         /// <summary>

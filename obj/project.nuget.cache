@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "+tXVsjHYg/jkHxkCzXB9ob+lK/RJyXlR5ZKRY4c604Kv7zC6quSCReZ/gBfH7bHNVfojAcwBzt8SbGmb9alkWQ==",
+  "success": true,
+  "projectFilePath": "C:\\proyecto pw2022\\Blog\\Net8\\ScannerWia\\ScannerWia.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Usuario\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512",
+    "C:\\Users\\Usuario\\.nuget\\packages\\tesseract\\5.2.0\\tesseract.5.2.0.nupkg.sha512"
+  ],
+  "logs": []
+}

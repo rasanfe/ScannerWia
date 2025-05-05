@@ -14,7 +14,7 @@ namespace ScannerWia
         const string WIA_FORMAT_GIF = "{B96B3CB0-0728-11D3-9D7B-0000F81EF32E}";
         const string WIA_FORMAT_JPEG = "{B96B3CAE-0728-11D3-9D7B-0000F81EF32E}";
         const string WIA_FORMAT_TIFF = "{B96B3CB1-0728-11D3-9D7B-0000F81EF32E}";
-        private string _errorText="";
+        private string _errorText = "";
         private int pageIndex = 1;
 
         private DeviceManager deviceManager;
@@ -122,7 +122,7 @@ namespace ScannerWia
 
 
                 // Save single images
-                 string singleImagePath = "";
+                string singleImagePath = "";
 
                 foreach (var image in images)
                 {
@@ -168,7 +168,7 @@ namespace ScannerWia
                 }
                 return imagePaths.ToArray();
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 _errorText = ex.Message;
                 throw new Exception(_errorText);

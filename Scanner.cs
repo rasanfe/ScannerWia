@@ -52,8 +52,8 @@ namespace ScannerWia
 
             while (true)
             {
-                 try
-                  {
+                try
+                {
                     AdjustScannerSettings(item, resolution, 0, 0, width_pixel, height_pixel, 0, 0, color_mode);
 
                     object scanResult = dlg.ShowTransfer(item, imageFormat, true);

@@ -1,0 +1,72 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\proyecto pw2022\\Blog\\Net8\\ScannerWia\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7D69704D-4272-490C-A558-745DAF756D4E}|ScannerWia.csproj|c:\\proyecto pw2022\\blog\\net8\\scannerwia\\scannerwia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D69704D-4272-490C-A558-745DAF756D4E}|ScannerWia.csproj|solutionrelative:scannerwia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D69704D-4272-490C-A558-745DAF756D4E}|ScannerWia.csproj|c:\\proyecto pw2022\\blog\\net8\\scannerwia\\scanner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D69704D-4272-490C-A558-745DAF756D4E}|ScannerWia.csproj|solutionrelative:scanner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e506b91c-c606-466a-90a9-123d1d1e12b3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ScannerWia.cs",
+              "DocumentMoniker": "C:\\proyecto pw2022\\Blog\\Net8\\ScannerWia\\ScannerWia.cs",
+              "RelativeDocumentMoniker": "ScannerWia.cs",
+              "ToolTip": "C:\\proyecto pw2022\\Blog\\Net8\\ScannerWia\\ScannerWia.cs",
+              "RelativeToolTip": "ScannerWia.cs",
+              "ViewState": "AQIAAHsAAAAAAAAAAAAAAAEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T14:27:12.977Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Scanner.cs",
+              "DocumentMoniker": "C:\\proyecto pw2022\\Blog\\Net8\\ScannerWia\\Scanner.cs",
+              "RelativeDocumentMoniker": "Scanner.cs",
+              "ToolTip": "C:\\proyecto pw2022\\Blog\\Net8\\ScannerWia\\Scanner.cs",
+              "RelativeToolTip": "Scanner.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAKkAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T14:25:48.693Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 797,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

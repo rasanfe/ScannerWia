@@ -1,5 +1,5 @@
 # ScannerWia
-Proyecto .Net6 para usar el Escaner (C# WIA)
+Proyecto .Net8 para usar el Escaner (C# WIA)
 
 Ejemplo libreria de clases para usar el Scanner en PowerBuilder inspirado en el artículo:
 

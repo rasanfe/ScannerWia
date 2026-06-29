@@ -1,21 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0-windows</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <COMReference Include="WIA">
-      <WrapperTool>tlbimp</WrapperTool>
-      <VersionMinor>0</VersionMinor>
-      <VersionMajor>1</VersionMajor>
-      <Guid>94a0e92d-43c0-494e-ac29-fd45948a5221</Guid>
-      <Lcid>0</Lcid>
-      <Isolated>false</Isolated>
+    <!-- WIA via Interop.WIA.dll PRE-generado con tlbimp (desde C:\Windows\System32\wiaaut.dll).
+         Así compila con 'dotnet build/publish' FUERA de Visual Studio (sin el error MSB4803 que
+         daba el antiguo <COMReference>, que obligaba a ejecutar tlbimp en cada build).
+         EmbedInteropTypes=true => los tipos WIA se incrustan en el DLL del proyecto; el interop
+         solo hace falta al COMPILAR, NO en runtime/despliegue (Private=false evita copiarlo a bin). -->
+    <Reference Include="Interop.WIA">
+      <HintPath>Interop.WIA.dll</HintPath>
       <EmbedInteropTypes>true</EmbedInteropTypes>
-    </COMReference>
+      <Private>false</Private>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
